@@ -1,0 +1,14 @@
+.container {
+    display: inline-flex;
+    align-items: center;
+    gap: calc( 4em / 18 );
+    padding: calc( 4em / 18 );
+}
+
+.icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: calc( 24em / 18 );
+    height: calc( 24em / 18 );
+}

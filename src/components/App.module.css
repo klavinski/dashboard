@@ -1,0 +1,23 @@
+.container {
+    height: 100%;
+    overflow: hidden;
+}
+
+.graph {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 150%;
+}
+
+.rows {
+    display: grid;
+    position: absolute;
+    backdrop-filter: blur( calc( 4em / 18 ) );
+    height: 100%;
+    z-index: 1;
+    box-shadow: 0 0 calc( 32em / 18 ) 0 #0000000a;
+    border-right: calc( 2em / 18 ) solid #fff3;
+    width: 55%;
+}

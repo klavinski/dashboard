@@ -1,0 +1,11 @@
+.floating {
+    backdrop-filter: blur( calc( 16em / 18 ) );
+    border: calc( 2em / 18 ) solid #fff3;
+    box-shadow: 0 0 calc( 32em / 18 ) 0 #0001;
+    border-radius: calc( 16em / 18 );
+    display: flex;
+    align-items: center;
+    height: calc( 32em / 18 );
+    padding: 0 calc( 4em / 18 );
+    z-index: 1;
+}

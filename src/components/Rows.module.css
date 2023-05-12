@@ -1,0 +1,47 @@
+.hashes {
+    display: flex;
+    gap: calc( 16em/ 18 );
+    flex-wrap: wrap;
+}
+
+.header {
+    display: contents;
+}
+
+.header > * {
+    position: sticky;
+    top: 0;
+    backdrop-filter: blur( calc( 4em / 18 ) );
+    border-bottom: calc( 2em / 18 ) solid #fff3;
+    background-color: #fff7;
+}
+
+.number {
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+}
+
+.row {
+    display: contents;
+}
+
+.rows {
+    display: grid;
+    grid-template-columns: min-content repeat( 3, 1fr ) min-content min-content;
+    align-items: stretch;
+    overflow: scroll;
+    overflow-anchor: auto;
+}
+
+.rows > div > * {
+    padding: calc( 8em / 18 );
+}
+
+.selected > * {
+    background-image: linear-gradient( to bottom, white, #0087bd22 );
+    background-size: auto 2px;
+}
+
+.time {
+    white-space: nowrap;
+}

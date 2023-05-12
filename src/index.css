@@ -1,0 +1,30 @@
+@import "pretendard/dist/web/static/pretendard-dynamic-subset.css";
+
+@font-face {
+    font-family: "Tossface";
+    src: url( "./assets/TossFaceFontWeb.woff2" );
+}
+
+@font-face {
+    font-family: "Julia Mono";
+    src: url( "./assets/JuliaMono-RegularLatin.woff2" );
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html, body, #root {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: 'Pretendard', "Tossface";
+    line-height: calc( 24 / 18 );
+    font-size: 1.3vw;
+}
+
+a {
+    color: inherit;
+}

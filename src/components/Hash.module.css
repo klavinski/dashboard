@@ -1,0 +1,11 @@
+.container {
+    font-family: "Julia Mono", "Tossface";
+    border-radius: calc( 16em / 18 );
+    overflow: hidden;
+    transition: transform 0.1s ease-in-out;
+    display: inline-block;
+}
+
+.container:active {
+    transform: scale( 0.9 );
+}
