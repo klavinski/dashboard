@@ -51,7 +51,7 @@ export const useTxs = makeUseWebSocket(
     "wss://ws.blockchain.info/inv",
     [] as Tx[],
     txParser,
-    ( { x: { hash, time, inputs, out } } ) => txs => [ ...txs.filter( tx => tx.time > time * 1e3 && tx.hash !== hash ), { io: [ ...inputs.map( _ => ( { address: _.prev_out.addr ?? "?????", value: - _.prev_out.value } ) ), ...out.map( _ => ( { address: _.addr ?? "?????", value: _.value } ) ) ], hash, time: time * 1e3 }, ...txs.filter( tx => tx.time <= time * 1e3 && tx.hash !== hash ) ].slice( 0, 100 ),
+    ( { x: { hash, time, inputs, out } } ) => txs => [ ...txs.filter( tx => tx.time > time * 1e3 && tx.hash !== hash ), { io: [ ...inputs.map( _ => ( { address: _.prev_out.addr ?? "?????", value: - _.prev_out.value } ) ), ...out.map( _ => ( { address: _.addr ?? "?????", value: _.value } ) ) ], hash, time: time * 1e3 }, ...txs.filter( tx => tx.time <= time * 1e3 && tx.hash !== hash ) ].slice( 0, 500 ),
     webSocket => () => webSocket.send( JSON.stringify( { op: "unconfirmed_sub" } ) )
 )
 

@@ -2,7 +2,7 @@ import ForceGraph, { ForceGraphMethods } from "react-force-graph-2d"
 import { Tx } from "../api"
 import { green, hashColor, hashEmoji, red } from "../utils"
 import { unique } from "../utils"
-import { useEffect, useRef, useState } from "react"
+import { memo, useEffect, useRef, useState } from "react"
 import { z } from "zod"
 
 type GraphData = {
@@ -10,7 +10,7 @@ type GraphData = {
     links: { source: string, target: string, width: number }[],
 }
 
-export const Graph = ( { tx }: { tx: Tx } ) => {
+export const Graph = memo( ( { tx }: { tx: Tx } ) => {
     const ref = useRef( undefined as ForceGraphMethods | undefined )
     const [ graphData, setGraphData ] = useState( { nodes: [], links: [] } as GraphData )
     useEffect( () => {
@@ -55,4 +55,4 @@ export const Graph = ( { tx }: { tx: Tx } ) => {
         linkWidth="width"
         onNodeClick={ node => "?????" !== node.id && window.open( `https://blockchain.com/${ tx.hash === node.id ? "explorer/transactions/btc" : "btc/address" }/${ node.id }`, "_blank" ) }
     />
-}
+} )

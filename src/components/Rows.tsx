@@ -1,7 +1,7 @@
 import { Price, Tx } from "../api"
 import { IconArrowRight, IconClock, IconHash, IconUser } from "@tabler/icons-react"
 import { IconCoinsHand, IconCoinsStacked02, IconCurrencyBitcoin, IconCurrencyDollar } from "untitled-ui-icons"
-import { ComponentPropsWithoutRef, Dispatch, SetStateAction } from "react"
+import { ComponentPropsWithoutRef, Dispatch, memo, SetStateAction } from "react"
 import TimeAgo from "timeago-react"
 import styles from "./Rows.module.css"
 import { Pill } from "./Pill"
@@ -16,7 +16,7 @@ const Amount = ( { amount, price }: { amount: number, price?: number } ) => <Too
     </div>
 </Tooltip>
 
-const Row = ( { price, selected, setSelection, tx }: { price: number | undefined, selected: boolean, setSelection: Dispatch<SetStateAction<Tx | null>>, tx: Tx } ) => {
+const Row = memo( ( { price, selected, setSelection, tx }: { price: number | undefined, selected: boolean, setSelection: Dispatch<SetStateAction<Tx | null>>, tx: Tx } ) => {
     const value = tx.io.reduce( ( sum, _ ) => sum + ( _.value > 0 ? _.value : 0 ), 0 ) / 1e8
     const fees = tx.io.reduce( ( sum, _ ) => sum - _.value, 0 ) / 1e8
     return <div
@@ -30,7 +30,7 @@ const Row = ( { price, selected, setSelection, tx }: { price: number | undefined
         <div className={ styles.hashes }>{ unique( tx.io.filter( _ => _.value < 0 ).map( _ => _.address ) ).map( _ => <Hash key={ _ } seed={ _ } address/> ) }</div>
         <div className={ styles.hashes }>{ unique( tx.io.filter( _ => _.value > 0 ).map( _ => _.address ) ).map( _ => <Hash key={ _ } seed={ _ } address/> ) }</div>
     </div>
-}
+} )
 
 export const Rows = ( { prices, selection, setSelection, txs }: { prices: Price[], selection: Tx | null, setSelection: ComponentPropsWithoutRef<typeof Row>["setSelection"], txs: Tx[] } ) => <div className={ styles.rows }>
     <div className={ styles.header }>

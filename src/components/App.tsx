@@ -19,7 +19,7 @@ export const App = () => {
                     <Rows prices={ prices } selection={ selection } setSelection={ setSelection }txs={ txs }/>
                 </div>
                 <div className={ styles.graph }>
-                    { selection ? <Graph tx={ selection }/> : <Pill icon={ <IconArrowLeft/> }>Hover a transaction to see its graph</Pill> }
+                    { selection ? <Graph tx={ selection }/> : <Pill icon={ <IconArrowLeft/> }>Hover over a transaction to see its graph</Pill> }
                 </div>
             </div>
         }</ErrorHandler>
