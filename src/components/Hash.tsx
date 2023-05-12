@@ -1,7 +1,7 @@
 import { hashColor, hashEmoji } from "../utils"
 import styles from "./Hash.module.css"
 import { Pill } from "./Pill"
-import { Tooltip } from "./Tootlip"
+import { Tooltip } from "./Tooltip"
 
 export const Hash = ( { address, seed }: { address?: true, seed: string } ) => <Tooltip content={ seed }>
     <a

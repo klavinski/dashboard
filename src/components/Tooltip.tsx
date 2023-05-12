@@ -11,9 +11,7 @@ export const Tooltip = ( { children, content }: { children: ReactNode, content: 
         whileElementsMounted: ( ...args ) => autoUpdate( ...args, { animationFrame: true } ),
         middleware: [ shift(), flip() ]
     } )
-
     const hover = useHover( context )
-
     const { getReferenceProps, getFloatingProps } = useInteractions( [ hover ] )
 
     return <>

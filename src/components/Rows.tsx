@@ -7,7 +7,7 @@ import styles from "./Rows.module.css"
 import { Pill } from "./Pill"
 import { unique } from "../utils"
 import { Hash } from "./Hash"
-import { Tooltip } from "./Tootlip"
+import { Tooltip } from "./Tooltip"
 
 const Amount = ( { amount, price }: { amount: number, price?: number } ) => <Tooltip content={ <><Pill icon={ <IconCurrencyBitcoin/> }>1</Pill> = <Pill icon={ <IconCurrencyDollar/> }>{ price ?? "?" }</Pill></> }>
     <div className={ styles.number }>
@@ -17,18 +17,18 @@ const Amount = ( { amount, price }: { amount: number, price?: number } ) => <Too
 </Tooltip>
 
 const Row = ( { price, selected, setSelection, tx }: { price: number | undefined, selected: boolean, setSelection: Dispatch<SetStateAction<Tx | null>>, tx: Tx } ) => {
-    const value = tx.io.reduce( ( sum, _ ) => sum - ( _.value < 0 ? _.value : 0 ), 0 ) / 1e8
+    const value = tx.io.reduce( ( sum, _ ) => sum + ( _.value > 0 ? _.value : 0 ), 0 ) / 1e8
     const fees = tx.io.reduce( ( sum, _ ) => sum - _.value, 0 ) / 1e8
     return <div
         className={ [ styles.row, selected ? styles.selected : "" ].join( " " ) } onPointerEnter={ () => setSelection( tx ) }>
         <Hash seed={ tx.hash }/>
-        <Tooltip content={ new Date( tx.time * 1e3 ).toLocaleString() }>
-            <div className={ styles.time }><TimeAgo datetime={ tx.time * 1e3 }/></div>
+        <Tooltip content={ new Date( tx.time ).toLocaleString() }>
+            <div className={ styles.time }><TimeAgo datetime={ tx.time }/></div>
         </Tooltip>
         <Amount amount={ value } price={ price }/>
         <Amount amount={ fees } price={ price }/>
-        <div className={ styles.hashes }>{ unique( tx.io.map( _ => _.address ) ).map( _ => <Hash key={ _ } seed={ _ } address/> ) }</div>
-        <div className={ styles.hashes }>{ unique( tx.io.map( _ => _.address ) ).map( _ => <Hash key={ _ } seed={ _ } address/> ) }</div>
+        <div className={ styles.hashes }>{ unique( tx.io.filter( _ => _.value < 0 ).map( _ => _.address ) ).map( _ => <Hash key={ _ } seed={ _ } address/> ) }</div>
+        <div className={ styles.hashes }>{ unique( tx.io.filter( _ => _.value > 0 ).map( _ => _.address ) ).map( _ => <Hash key={ _ } seed={ _ } address/> ) }</div>
     </div>
 }
 
@@ -43,7 +43,7 @@ export const Rows = ( { prices, selection, setSelection, txs }: { prices: Price[
     </div>
     { txs.map( tx => <Row
         key={ tx.hash }
-        price={ ( prices.findLast( _ => _.time <= tx.time * 1e3 ) ?? prices[ 0 ] )?.price }
+        price={ ( prices.findLast( _ => _.time <= tx.time ) ?? prices[ 0 ] )?.price }
         selected={ selection?.hash === tx.hash }
         setSelection={ setSelection }
         tx={ tx }
