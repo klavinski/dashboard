@@ -73,8 +73,10 @@ The main challenge is to display a lot of information in a small space. I used t
 
 ![performance](./performance.png)
 
-- **Performance**: here, we are limited by [the Floating UI library](https://floating-ui.com/). It is the biggest performance cost according to the performance trace (rows with `@floating-ui`): for 8000 rows, 92.3% of the total computation! At each update, each potential tooltip calls `getBoundingClientRect`. Currently, I display only the 500 latest transactions. Possible improvements here: since only one tooltip is displayed at a time, we could calculate the bounding rectangle only once. We could also virtualise the list.
+- **Performance**: here, we are limited by the [Floating UI library](https://floating-ui.com/). It is the biggest performance cost according to the performance trace (rows with `@floating-ui`): for 8000 rows, 92.3% of the total computation! At each update, each potential tooltip calls `getBoundingClientRect`. Currently, I display only the 500 latest transactions. Possible improvements here: since only one tooltip is displayed at a time, we could calculate the bounding rectangle only once. We could also virtualise the table.
 
 - **User-friendliness**: currently, new entries displace suddenly all the other entries, and the user must scroll down to find the old ones. Worse: if the mouse was hovering over a particular transaction, after the displacement, it may hover over another transaction, and the old one would be lost. The current CSS trick to anchor the scroll position [does not work in Safari](https://caniuse.com/css-overflow-anchor), and only works when the user has already scrolled. Ideally, the table would retain the scroll position.
+
+- **Graph aesthetics and features**: the [graph library](https://vasturiano.github.io/react-force-graph/) draws on a canvas instead of using SVG and HTML elements. Every feature must go through (and is limited by) the interface it exposes. We cannot customise its tooltip, for example. It works for the purposes of this experiment, but it would be better to use a more flexible library.
 
 - **Minor features**: mobile and dark modes, a way to filter the transactions, etc.
