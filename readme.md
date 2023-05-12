@@ -52,7 +52,7 @@ Here, we want to see, in the blink of an eye, who contributes the most. A pie/ba
 
 Addresses are a long string. It takes time to read it, and mistakes easily happen. I decomposed an address using other ways of communicating information:
 
-- **Colour**: an address is hashed deterministically to obtain a number, which is the hue of the colour. Using the novel [HCT colour space](https://www.fonearena.com/blog/356853/google-hct-colour-system-android-material-design.html), we can maintain a constant lightness and saturation for maximal readability.
+- **Colour**: an address is hashed deterministically to obtain a number, which is the hue of the colour. Using the novel [HCT colour space](https://material.io/blog/science-of-color-design), we can maintain a constant lightness and saturation for maximal readability.
 
 - **Shape**: the shape is chosen among [geometric emojis](https://toss.im/tossface/all), which are easy to recognise at a small scale and match the style of the [typeface](https://rsms.me/inter/). I limited the emojis to animals, like the icons of Google users when editing a document, because seeing a cake sending money to a foot might be more puzzling.
 
